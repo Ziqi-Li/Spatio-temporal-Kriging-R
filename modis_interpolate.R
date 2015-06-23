@@ -12,7 +12,7 @@ filenames <- list.files(pattern="*.tif", full.names=TRUE)
 #create raster brick
 r<-brick()
 for(i in 1:120){
-	r<-addLayer(r,raster(filenames[i]))
+    r<-addLayer(r,raster(filenames[i]))
 }
 
 #get best summer and winter
@@ -158,17 +158,17 @@ prodSumModel <- vgmST("productSum", space=vgm(16, "Exp", 40000), time= vgm(1000,
 x=sample(1:100, 30, replace=F)
 y=sample(1:100, 30, replace=F)
 for (i in 1:30){
-	cell<-c(r[x[i],y[i]])
-	cell.up<-c(r[x[i],y[i]-1])
-	cell.down<-c(r[x[i],y[i]+1])
-	cell.left<-c(r[x[i]-1,y[i]])
-	cell.right<-c(r[x[i]+1,y[i]])
-	fit.up<-lm(formula = cell ~ cell.up, na.rm = TRUE)
-	fit.down<-lm(formula = cell ~ cell.down, na.rm = TRUE)
-	fit.left<-lm(formula = cell ~ cell.left, na.rm = TRUE)
-	fit.right<-lm(formula = cell ~ cell.right, na.rm = TRUE)
-	udlr<-c(summary(fit.up)$r.squared, summary(fit.down)$r.squared, summary(fit.left)$r.squared, summary(fit.right)$r.squared)	
-	print(udlr)
+    cell<-c(r[x[i],y[i]])
+    cell.up<-c(r[x[i],y[i]-1])
+    cell.down<-c(r[x[i],y[i]+1])
+    cell.left<-c(r[x[i]-1,y[i]])
+    cell.right<-c(r[x[i]+1,y[i]])
+    fit.up<-lm(formula = cell ~ cell.up, na.rm = TRUE)
+    fit.down<-lm(formula = cell ~ cell.down, na.rm = TRUE)
+    fit.left<-lm(formula = cell ~ cell.left, na.rm = TRUE)
+    fit.right<-lm(formula = cell ~ cell.right, na.rm = TRUE)
+    udlr<-c(summary(fit.up)$r.squared, summary(fit.down)$r.squared, summary(fit.left)$r.squared, summary(fit.right)$r.squared)
+    print(udlr)
 }
 
 #Get station data
